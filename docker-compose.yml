@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+  tgh-api:
+    image: fucyber/laravel7-nginx:1.1 
+    container_name: laravel-api  
+    ports:
+        - "2020:80"
+    volumes:
+        - ./application:/var/www
+        - ./logs/nginx:/var/log/nginx
+        - ./dockers/php-fpm/config/php.ini:/etc/php7/php.ini
+        - ./dockers/nginx/nginx.conf:/etc/nginx/nginx.conf  
+    networks:
+      - external-network 
+    environment:
+      TZ: "Asia/Bangkok"
+
+networks:
+    external-network:
+        external:
+            name: global-docker_default
