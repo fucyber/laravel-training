@@ -32,7 +32,7 @@ services:
   phpmhyadmin:
     restart: always
     image: phpmyadmin/phpmyadmin:edge-4.8
-    container_name: -phpmhyadmin
+    container_name: phpmhyadmin
     ports:
       - "3345:80" 
     volumes:
