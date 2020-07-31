@@ -11,8 +11,6 @@ services:
         - ./logs/nginx:/var/log/nginx
         - ./dockers/php-fpm/config/php.ini:/etc/php7/php.ini
         - ./dockers/nginx/nginx.conf:/etc/nginx/nginx.conf  
-    networks:
-      - external-network 
     environment:
       TZ: "Asia/Bangkok"
 
@@ -25,8 +23,6 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
       #- ./data/schema/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql
-    networks:
-      - external-network
     environment:
       - TZ="Asia/Bangkok"
       - MYSQL_ROOT_PASSWORD=T@uch
@@ -41,8 +37,6 @@ services:
       - "3345:80" 
     volumes:
       - ./data/mysql:/var/lib/mysql 
-    networks:
-      - external-network
     depends_on:
       - mariadb
     environment: 
