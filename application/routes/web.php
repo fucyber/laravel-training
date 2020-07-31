@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $databaseName = \DB::table('news')->get();
-    dd($databaseName);
+    // $databaseName = \DB::table('news')->get();
+    // dd($databaseName);
 
 
     return response()->json([

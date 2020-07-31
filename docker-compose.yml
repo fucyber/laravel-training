@@ -11,37 +11,14 @@ services:
         - ./logs/nginx:/var/log/nginx
         - ./dockers/php-fpm/config/php.ini:/etc/php7/php.ini
         - ./dockers/nginx/nginx.conf:/etc/nginx/nginx.conf  
+    networks:
+      - external-network 
     environment:
       TZ: "Asia/Bangkok"
+      # T@uchTechn@l@gies
 
-  mariadb:
-    restart: always
-    image: mariadb:10.3
-    container_name: mariadb
-    ports:
-      - "3344:3306"
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-      #- ./data/schema/001_init.sql:/docker-entrypoint-initdb.d/001_init.sql
-    environment:
-      - TZ="Asia/Bangkok"
-      - MYSQL_ROOT_PASSWORD=T@uch
-      - MYSQL_ROOT_HOST=%  
 
- 
-  phpmhyadmin:
-    restart: always
-    image: phpmyadmin/phpmyadmin:edge-4.8
-    container_name: phpmhyadmin
-    ports:
-      - "3345:80" 
-    volumes:
-      - ./data/mysql:/var/lib/mysql 
-    depends_on:
-      - mariadb
-    environment: 
-      PMA_ARBITRARY: 1
-      PMA_HOST: mariadb
-      PMA_PORT: 3306  
-      PMA_USER: root
-      PMA_PASSWORD: root
+networks:
+    external-network:
+        external:
+            name: global-docker_default
